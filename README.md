@@ -20,8 +20,8 @@ A simple AI-based chatbot web application inspired by ChatGPT. Built using **HTM
 
 ## 📸 Screenshots
 
-<!-- Add screenshots here if available -->
-![Chat Interface](path/to/screenshot.png)
+![image](https://github.com/user-attachments/assets/701db28d-103b-4ecf-a152-daefc41aad42)
+
 
 ## 🧠 How It Works
 
