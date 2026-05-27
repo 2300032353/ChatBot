@@ -4,7 +4,13 @@
 
   body {
     font-family: 'Poppins', sans-serif;
-    background: #222831;
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(circle at top left, #2f80ed 0%, #1b2735 45%, #14181f 100%);
+    color: #edf1f3;
   }
 
   .container {
@@ -13,7 +19,7 @@
     padding: 20px;
     border-radius: 10px;
     box-shadow: #64646f33 0px 7px 29px 0px;
-    background: #31363F;
+    background: rgba(49, 54, 63, 0.96);
   }
 
   .title {
