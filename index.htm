@@ -1,21 +1,133 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chatbot | Becodewala</title>
-    <link rel="stylesheet" href="style.css">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ChatMate AI Assistant</title>
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#0f1722" />
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
-    <div class="container">
-        <div class="title">Let's Chat</div>
-        <div class="chat" id="chat"></div>
-        <input type="text" class="input" id="input" placeholder="Type your message here...." />
-        <button class="button" id="button"><i class="fa-brands fa-telegram"></i></button>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <div>
+          <div class="brand">ChatMate</div>
+          <p class="brand-note">AI assistant with chat rooms, voice, reminders, and productivity tools.</p>
+        </div>
+        <button id="themeToggle" class="icon-btn" aria-label="Toggle light/dark mode"><i class="fa-solid fa-moon"></i></button>
       </div>
-      
-      <script src="script.js"></script>
+
+      <section class="sidebar-panel">
+        <div class="panel-title">Chat Rooms</div>
+        <div class="room-actions">
+          <button id="newRoomBtn" class="primary">New Room</button>
+          <button id="logoutBtn" class="secondary">Sign Out</button>
+        </div>
+        <input id="roomSearch" type="search" placeholder="Search rooms..." aria-label="Search chat rooms" />
+        <div id="roomsList" class="rooms-list"></div>
+      </section>
+
+      <section class="sidebar-panel">
+        <div class="panel-title">Profile</div>
+        <div class="profile-card">
+          <div class="profile-header">
+            <div class="profile-avatar"><i class="fa-solid fa-user"></i></div>
+            <div>
+              <h3 id="profileName">Guest</h3>
+              <p id="profileEmail">guest@chatmate.local</p>
+              <span id="profileStatus" class="status-chip">Guest mode</span>
+            </div>
+          </div>
+          <form id="profileForm" class="settings-form">
+            <label>Display name<input id="profileNameInput" type="text" placeholder="Your name" /></label>
+            <label>Email address<input id="profileEmailInput" type="email" placeholder="you@example.com" /></label>
+            <button type="submit" class="primary">Save profile</button>
+          </form>
+        </div>
+      </section>
+
+      <section class="sidebar-panel">
+        <div class="panel-title">Settings</div>
+        <form id="settingsForm" class="settings-form">
+          <label>Theme<select id="themeSelectInput"><option value="dark">Dark</option><option value="light">Light</option></select></label>
+          <label><input id="enableSpeech" type="checkbox" /> Enable voice responses</label>
+          <label><input id="enableEmoji" type="checkbox" /> Show emoji picker</label>
+          <button type="submit" class="secondary">Apply settings</button>
+        </form>
+      </section>
+    </aside>
+
+    <main class="chat-panel">
+      <header class="chat-topbar">
+        <div>
+          <h1 id="activeRoomTitle">General Chat</h1>
+          <p id="speechStatus" class="subtitle">Online · Voice ready</p>
+        </div>
+        <div class="topbar-actions">
+          <button id="micBtn" class="icon-btn" aria-label="Toggle voice input"><i class="fa-solid fa-microphone"></i></button>
+          <button id="emojiBtn" class="icon-btn" aria-label="Toggle emoji panel"><i class="fa-solid fa-face-smile"></i></button>
+        </div>
+      </header>
+
+      <div class="search-row">
+        <input id="messageSearch" type="search" placeholder="Search this chat..." aria-label="Search messages" />
+      </div>
+
+      <section id="chatWindow" class="chat-window" aria-live="polite"></section>
+      <div id="typingIndicator" class="typing-indicator hidden" aria-hidden="true">
+        <span></span><span></span><span></span>
+      </div>
+      <div id="suggestions" class="suggestions" aria-label="Suggested follow-up questions"></div>
+
+      <div class="composer">
+        <input id="messageInput" type="text" placeholder="Type a message or ask for weather, math, or reminders..." aria-label="Message input" autocomplete="off" />
+        <button id="sendBtn" class="send-btn" aria-label="Send message"><i class="fa-solid fa-paper-plane"></i></button>
+      </div>
+
+      <div id="emojiPanel" class="emoji-panel hidden" aria-hidden="true"></div>
+
+      <section class="productivity-panel">
+        <div class="productivity-card">
+          <h2>Tasks</h2>
+          <div id="taskList" class="task-list"></div>
+          <div class="task-entry">
+            <input id="taskInput" type="text" placeholder="New task..." aria-label="New task" />
+            <button id="taskAddBtn" class="secondary">Add</button>
+          </div>
+        </div>
+
+        <div class="productivity-card">
+          <h2>Reminders</h2>
+          <div id="reminderList" class="task-list"></div>
+          <label>Reminder<input id="reminderText" type="text" placeholder="Reminder text" aria-label="Reminder text" /></label>
+          <label>When<input id="reminderDate" type="datetime-local" aria-label="Reminder date and time" /></label>
+          <button id="reminderAddBtn" class="secondary">Save reminder</button>
+        </div>
+      </section>
+
+      <section class="history-actions">
+        <button id="exportTxtBtn" class="secondary">Export TXT</button>
+        <button id="exportPdfBtn" class="secondary">Export PDF</button>
+        <button id="clearChatBtn" class="danger">Clear Chat</button>
+      </section>
+    </main>
+  </div>
+
+  <div id="loginOverlay" class="overlay hidden" role="dialog" aria-modal="true" aria-labelledby="loginTitle">
+    <div class="overlay-panel">
+      <h2 id="loginTitle">Sign in to ChatMate</h2>
+      <form id="loginForm">
+        <label>Name<input id="loginName" type="text" placeholder="Your name" required /></label>
+        <label>Email<input id="loginEmail" type="email" placeholder="you@example.com" required /></label>
+        <button type="submit" class="primary">Sign in</button>
+      </form>
+    </div>
+  </div>
+
+  <script type="module" src="script.js"></script>
 </body>
 </html>

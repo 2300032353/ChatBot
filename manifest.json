@@ -1,0 +1,17 @@
+{
+  "name": "ChatMate AI Assistant",
+  "short_name": "ChatMate",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#0f1722",
+  "theme_color": "#7c3aed",
+  "description": "A modern AI-style chatbot interface with voice, productivity tools, multiple chat rooms, and PWA support.",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
