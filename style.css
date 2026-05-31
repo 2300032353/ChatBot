@@ -234,6 +234,13 @@ button:hover {
   color: var(--text);
 }
 
+.form-help {
+  display: block;
+  margin: 0 0 16px;
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+
 .settings-form button,
 .task-entry button,
 .history-actions button {
@@ -401,6 +408,10 @@ button:hover {
   height: 40px;
   background: rgba(239, 68, 68, 0.16);
   color: var(--danger);
+}
+
+.hidden {
+  display: none !important;
 }
 
 .history-actions {

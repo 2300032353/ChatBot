@@ -53,7 +53,11 @@
       <section class="sidebar-panel">
         <div class="panel-title">Settings</div>
         <form id="settingsForm" class="settings-form">
-          <label>Theme<select id="themeSelectInput"><option value="dark">Dark</option><option value="light">Light</option></select></label>
+          <label>Theme<select id="themeSelect"><option value="dark">Dark</option><option value="light">Light</option></select></label>
+          <label>AI Provider<select id="aiProviderSelect"><option value="rule-based">Rule-based (local)</option><option value="openai">OpenAI</option><option value="google-gemini">Google Gemini</option><option value="groq">Groq</option></select></label>
+          <label>Model<input id="aiModelInput" type="text" placeholder="e.g. gpt-4o-mini or groq-1" /></label>
+          <label>API Key<input id="aiApiKeyInput" type="password" placeholder="Paste your API key here" /></label>
+          <small class="form-help">API keys are stored locally in browser storage.</small>
           <label><input id="enableSpeech" type="checkbox" /> Enable voice responses</label>
           <label><input id="enableEmoji" type="checkbox" /> Show emoji picker</label>
           <button type="submit" class="secondary">Apply settings</button>

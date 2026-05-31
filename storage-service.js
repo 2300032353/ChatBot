@@ -70,7 +70,7 @@ export function saveUser(user) {
 }
 
 export function loadSettings() {
-  return read(STORAGE_KEYS.settings, DEFAULT_SETTINGS);
+  return { ...DEFAULT_SETTINGS, ...read(STORAGE_KEYS.settings, DEFAULT_SETTINGS) };
 }
 
 export function saveSettings(settings) {

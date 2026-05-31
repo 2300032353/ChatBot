@@ -5,6 +5,7 @@ A modern ChatGPT-style chatbot interface built with HTML, CSS, and JavaScript. I
 ## Resume-Worthy Features
 
 - Voice assistant support using Speech Recognition and Text-to-Speech
+- Real AI provider support with OpenAI, Google Gemini, and Groq for richer conversational responses
 - Multiple chat rooms with saved history in Local Storage
 - PWA-ready with offline service worker and manifest
 - Productivity tools: calculator mode, to-do list, reminders, weather query, and date/time
@@ -30,6 +31,7 @@ A modern ChatGPT-style chatbot interface built with HTML, CSS, and JavaScript. I
 - JavaScript modules - Modular app architecture
 - Web APIs - Speech Recognition, Speech Synthesis, Fetch, Local Storage, Service Worker
 - jsPDF - PDF export support
+- OpenAI, Google Gemini, and Groq model integration via API provider selection
 
 ## Project Structure
 

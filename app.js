@@ -12,6 +12,9 @@ const elements = {
   profileNameInput: document.getElementById('profileNameInput'),
   profileEmailInput: document.getElementById('profileEmailInput'),
   themeSelect: document.getElementById('themeSelect'),
+  aiProviderSelect: document.getElementById('aiProviderSelect'),
+  aiModelInput: document.getElementById('aiModelInput'),
+  aiApiKeyInput: document.getElementById('aiApiKeyInput'),
   enableSpeech: document.getElementById('enableSpeech'),
   enableEmoji: document.getElementById('enableEmoji'),
   roomSearch: document.getElementById('roomSearch'),
@@ -128,7 +131,7 @@ async function sendMessage(text) {
   elements.sendBtn.disabled = true;
 
   try {
-    const response = await createBotResponse(trimmed, getActiveRoom().messages.slice(-6));
+    const response = await createBotResponse(trimmed, getActiveRoom().messages.slice(-6), state.settings);
     setTimeout(() => {
       setTyping(false);
       addMessage('bot', response.text);
@@ -204,6 +207,9 @@ function updateProfile(event) {
 function updateSettings(event) {
   event.preventDefault();
   state.settings.theme = elements.themeSelect.value;
+  state.settings.aiProvider = elements.aiProviderSelect.value;
+  state.settings.aiModel = elements.aiModelInput.value.trim() || state.settings.aiModel;
+  state.settings.aiApiKey = elements.aiApiKeyInput.value.trim();
   state.settings.speech = elements.enableSpeech.checked;
   state.settings.emojiPicker = elements.enableEmoji.checked;
   saveSettings(state.settings);

@@ -59,6 +59,9 @@ export function renderProfile(user) {
 
 export function renderSettings(settings) {
   document.getElementById('themeSelect').value = settings.theme;
+  document.getElementById('aiProviderSelect').value = settings.aiProvider || 'rule-based';
+  document.getElementById('aiModelInput').value = settings.aiModel || '';
+  document.getElementById('aiApiKeyInput').value = settings.aiApiKey || '';
   document.getElementById('enableSpeech').checked = settings.speech;
   document.getElementById('enableEmoji').checked = settings.emojiPicker;
   document.body.classList.toggle('light', settings.theme === 'light');
